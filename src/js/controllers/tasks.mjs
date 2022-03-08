@@ -37,6 +37,8 @@ export function task2HTMLElement (taskIndex, taskObject) {
         }
     );
 
+//*TODO Modificar el boton para saber cual es el que borra y el de tarea completada*/
+
     // Añado el manejador de eventos para el checkbox que borra la tarea(el segundo)
     // Este checkbox borra el elemento del array de tareas y del HTML
     inputCheckboxDeleteHTMLItem.addEventListener(
