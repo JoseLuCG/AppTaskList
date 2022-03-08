@@ -40,7 +40,7 @@ export function updateTasksHTML (CSSselector, tasksArray) {
     } else {
         listHTMLElement.innerText = "Add your first task..."
     }
-
+    //orderCompletedTask (listHTMLElement)
 }
 
 export function taskAddButtonClickHandler (event) {
@@ -54,3 +54,19 @@ export function taskAddButtonClickHandler (event) {
     addTask(newTask);
     updateTasksHTML(taskListHTMLSelector,getTasks());
 }
+
+/**
+ * Esta funcion sirve para agrupar las tareas completadas a final de la lista.
+ *  @param {}
+ */
+ function orderCompletedTask (list) {
+
+    const arrayTasksList = Array.from(list.children)
+
+    arrayTasksList.forEach(li => {
+        console.log(list.children[idx].children[1])
+    });
+
+}
+
+//orderCompletedTask()
