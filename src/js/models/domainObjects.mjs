@@ -32,4 +32,3 @@ export function saveTasks(newTasksArray) {
     localStorage.setItem(tasksStorageKey, stringData);
     updateTasksHTML(taskListHTMLSelector, newTasksArray);
 }
-
