@@ -1,8 +1,8 @@
 
 ## TODO
-* Borrar una tarea.
-* Borrar todas las tareas completadas.
-* Mantener las tareas completadas al final (ordenar automáticamente).
+* Borrar una tarea. [Moisés]
+* Borrar todas las tareas completadas. [Joselu]
+* Mantener las tareas completadas al final (ordenar automáticamente). [Tania]
 * Mostrar/ocultar tareas completadas.
 * Editar tareas no completadas.
 * Limpiar input tras añadir tarea.
