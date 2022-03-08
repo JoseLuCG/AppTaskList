@@ -37,9 +37,9 @@ export function saveTasks(newTasksArray) {
  * Elimina todas las tareas completadas.
  */
 function deleteAllCompletedTasksHandler () {
-    for (let item of taskArray){
-        if (item.completed){
-            taskArray.splice(item);
+    for (let itemIdx in taskArray){
+        if (taskArray[itemIdx].completed){
+            taskArray.splice(itemIdx,1);
         } 
     }
 }
