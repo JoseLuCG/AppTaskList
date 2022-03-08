@@ -30,6 +30,11 @@ export function task2HTMLElement (taskIndex, taskObject) {
     return listHTMLItem
 }
 
+/**
+ * Comprueba los elementos del array y los muestra en pantalla. 
+ * @param {*} CSSselector - Seria un ul
+ * @param {*} tasksArray - El array de tareas.
+ */
 export function updateTasksHTML (CSSselector, tasksArray) {
     const listHTMLElement = document.querySelector(CSSselector);
     listHTMLElement.innerText = ""
