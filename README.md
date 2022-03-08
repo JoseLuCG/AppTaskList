@@ -11,3 +11,4 @@
 * Mostrar "deshacer" durante unos segundos tras eliminar una o varias tareas.
 * Asignar etiquetas a tareas.
 * Filtrar tareas por etiqueta.
+* TODO Modificar el boton para saber cual es el que borra y el de tarea completada.
