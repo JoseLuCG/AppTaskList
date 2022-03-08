@@ -73,7 +73,7 @@ export function updateTasksHTML (CSSselector, tasksArray) {
     } else {
         listHTMLElement.innerText = "Add your first task..."
     }
-    //orderCompletedTask (listHTMLElement)
+    orderCompletedTask (listHTMLElement)
 }
 
 /**
