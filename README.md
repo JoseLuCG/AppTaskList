@@ -1,4 +1,3 @@
-# DOM-example
 
 ## TODO
 * Borrar una tarea.
