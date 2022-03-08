@@ -1,6 +1,12 @@
 import { addTask, saveTasks, getTasks } from "../models/domainObjects.mjs";
 import { taskListHTMLSelector, addTaskInputSelector, completedCSSClass } from "../models/defines.mjs"
 
+/**
+ * Transforma los datos a HTML
+ * @param {*} taskIndex 
+ * @param {*} taskObject 
+ * @returns 
+ */
 export function task2HTMLElement (taskIndex, taskObject) {
     // Creo los elementos HTML
     const listHTMLItem = document.createElement("li");
@@ -40,7 +46,7 @@ export function updateTasksHTML (CSSselector, tasksArray) {
     listHTMLElement.innerText = ""
     if (tasksArray.length > 0) {
         for ( let index in tasksArray ) {
-            listHTMLElement.appendChild(task2HTMLElement(index, tasksArray[index]))
+            listHTMLElement.appendChild(task2HTMLElement(index, tasksArray[index]));
         }
     } else {
         listHTMLElement.innerText = "Add your first task..."
@@ -48,6 +54,10 @@ export function updateTasksHTML (CSSselector, tasksArray) {
 
 }
 
+/**
+ * Añade un nuevo objeto al array de tareas.
+ * @param {*} event 
+ */
 export function taskAddButtonClickHandler (event) {
     //console.log(event)
     const input = document.querySelector(addTaskInputSelector);
