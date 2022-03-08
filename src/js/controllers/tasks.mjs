@@ -6,19 +6,22 @@ export function task2HTMLElement (taskIndex, taskObject) {
     const listHTMLItem = document.createElement("li");
     const pHTMLItem = document.createElement("p");
     const inputCheckboxHTMLItem = document.createElement("input");
+    const inputCheckboxDeleteHTMLItem = document.createElement("input");
     // Les proporciono valores 
     inputCheckboxHTMLItem.type = "checkbox";
+    inputCheckboxDeleteHTMLItem.type="checkbox";
     inputCheckboxHTMLItem.checked = taskObject.completed;
     pHTMLItem.innerHTML = taskObject.taskName
     // Los anido
     listHTMLItem.append(pHTMLItem, inputCheckboxHTMLItem);
+    listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem);
     // Aplico estilos si está completada
     if (taskObject.completed) {
         listHTMLItem.classList.add(completedCSSClass);
     } else {
         listHTMLItem.classList.remove(completedCSSClass);
     }
-    // Añado el manejador de eventos
+    // Añado el manejador de eventos para el checkbox que selecciona(el primero)
     inputCheckboxHTMLItem.addEventListener(
         "click",
         (event) => {
@@ -27,6 +30,23 @@ export function task2HTMLElement (taskIndex, taskObject) {
             saveTasks(tasks);
         }
     );
+
+    // Añado el manejador de eventos para el checkbox que borra la tarea(el segundo)
+    // Este checkbox borra el elemento del array de tareas y del HTML
+    inputCheckboxDeleteHTMLItem.addEventListener(
+        "click",
+        (event) => {
+            //obtengo el array de tareas del LocalStorage
+            const tasks = getTasks();
+            //si la posición (index) está en el rango array, borra el objeto del 
+            //array en esa posición
+            if ( taskIndex >-1 && taskIndex<=tasks.length) 
+                tasks.splice( taskIndex, 1 );
+            //actualiza el HTML y el localStorage con el array de tareas ya modificado
+            saveTasks(tasks);
+        }
+    );
+
     return listHTMLItem
 }
 
