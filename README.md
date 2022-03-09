@@ -6,7 +6,7 @@
 * Mostrar/ocultar tareas completadas. [Moises]
 * Editar tareas no completadas.
 * Limpiar input tras añadir tarea.
-* No añadir tareas vacías.
+* No añadir tareas vacías. [Tania]
 * Buscador de tareas.
 * Mostrar "deshacer" durante unos segundos tras eliminar una o varias tareas.
 * Asignar etiquetas a tareas.
