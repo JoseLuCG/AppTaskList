@@ -13,14 +13,18 @@ export function task2HTMLElement (taskIndex, taskObject) {
     const pHTMLItem = document.createElement("p");
     const inputCheckboxHTMLItem = document.createElement("input");
     const inputCheckboxDeleteHTMLItem = document.createElement("input");
+    const buttonEditHTMLItem = document.createElement("button");
     // Les proporciono valores 
     inputCheckboxHTMLItem.type = "checkbox";
     inputCheckboxDeleteHTMLItem.type="checkbox";
+    buttonEditHTMLItem.type = "button";
+    buttonEditHTMLItem.innerText = "Editar";
     inputCheckboxHTMLItem.checked = taskObject.completed;
     pHTMLItem.innerHTML = taskObject.taskName
     // Los anido
     listHTMLItem.append(pHTMLItem, inputCheckboxHTMLItem);
     listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem);
+    listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem, buttonEditHTMLItem);
     // Aplico estilos si está completada
     if (taskObject.completed) {
         listHTMLItem.classList.add(completedCSSClass);
@@ -109,3 +113,20 @@ export function taskAddButtonClickHandler (event) {
         ul.appendChild(checkbox);
     }
 };
+
+/**
+ * Modifica el texto de la tarea.
+ * @param {*} params 
+ */
+/*
+function changeTask (params) {
+    
+    editTask.addEventListener(
+        "click"
+        (edit) => {
+            const tasks = getTasks();
+            tasks[taskIndex].completed = edit.target.checked;
+            saveTasks(tasks);
+    )
+
+}*/
