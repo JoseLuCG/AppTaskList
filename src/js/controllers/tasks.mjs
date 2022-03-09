@@ -93,17 +93,19 @@ export function taskAddButtonClickHandler (event) {
 }
 
 /**
- * Esta funcion sirve para agrupar las tareas completadas a final de la lista.
- *  @param {}
+ * Agrupa las tareas completadas a final de la lista.
+ *  @param {object} ul Es el ul de HTML.
+ *  @param {object} li Son todos los li de ul en HTML.
  */
  function orderCompletedTask (list) {
 
-    const arrayTasksList = Array.from(list.children)
+    const ul = document.querySelector("ul");
+    const li = document.querySelectorAll(".completed");
+    console.log(ul, li);
 
-    arrayTasksList.forEach(li => {
-        console.log(list.children[idx].children[1])
-    });
-
-}
-
-//orderCompletedTask()
+    for (let idx = 0; idx < li.length; idx++) {
+        const checkbox = li[idx];
+        console.log(checkbox);
+        ul.appendChild(checkbox);
+    }
+};
