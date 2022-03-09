@@ -1,5 +1,5 @@
-import { addTask, saveTasks, getTasks } from "../models/domainObjects.mjs";
-import { taskListHTMLSelector, addTaskInputSelector, completedCSSClass } from "../models/defines.mjs"
+import { addTask, saveTasks, getTasks, deleteAllCompletedTasksHandler } from "../models/domainObjects.mjs";
+import { taskListHTMLSelector, addTaskInputSelector, completedCSSClass, buttonDeleteAllCompletedTasks } from "../models/defines.mjs"
 
 /**
  * Transforma los datos a HTML
@@ -62,6 +62,9 @@ export function task2HTMLElement (taskIndex, taskObject) {
     return listHTMLItem
 }
 
+//Añade el manejador de eventos para el checkbox que borra todas las tareas completadas.
+document.querySelector(buttonDeleteAllCompletedTasks).addEventListener("click", deleteAllCompletedTasksHandler);
+
 /**
  * Comprueba los elementos del array y los muestra en pantalla. 
  * @param {*} CSSselector - Seria un ul
@@ -69,7 +72,7 @@ export function task2HTMLElement (taskIndex, taskObject) {
  */
 export function updateTasksHTML (CSSselector, tasksArray) {
     const listHTMLElement = document.querySelector(CSSselector);
-    listHTMLElement.innerText = ""
+    listHTMLElement.innerText = "";
     if (tasksArray.length > 0) {
         for ( let index in tasksArray ) {
             listHTMLElement.appendChild(task2HTMLElement(index, tasksArray[index]));
@@ -77,7 +80,7 @@ export function updateTasksHTML (CSSselector, tasksArray) {
     } else {
         listHTMLElement.innerText = "Add your first task..."
     }
-    orderCompletedTask (listHTMLElement)
+    //orderCompletedTask (listHTMLElement)
 }
 
 /**
