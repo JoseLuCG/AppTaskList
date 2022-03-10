@@ -1,6 +1,6 @@
 import { addTask, saveTasks, getTasks } from "../models/domainObjects.mjs";
-import { taskListHTMLSelector, addTaskInputSelector, completedCSSClass } from "../models/defines.mjs"
-
+import { disappear, taskListHTMLSelector, addTaskInputSelector, completedCSSClass } from "../models/defines.mjs"
+let bandera=true;  
 /**
  * Transforma los datos a HTML
  * @param {*} taskIndex 
@@ -13,20 +13,28 @@ export function task2HTMLElement (taskIndex, taskObject) {
     const pHTMLItem = document.createElement("p");
     const inputCheckboxHTMLItem = document.createElement("input");
     const inputCheckboxDeleteHTMLItem = document.createElement("input");
+    const buttonUno=document.querySelector("#buttonUno");
+    buttonUno.addEventListener("click",hideHandler);
+    
+
     // Les proporciono valores 
     inputCheckboxHTMLItem.type = "checkbox";
     inputCheckboxDeleteHTMLItem.type="checkbox";
     inputCheckboxHTMLItem.checked = taskObject.completed;
-    pHTMLItem.innerHTML = taskObject.taskName
+    pHTMLItem.innerHTML = taskObject.taskName;
     // Los anido
     listHTMLItem.append(pHTMLItem, inputCheckboxHTMLItem);
     listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem);
+
     // Aplico estilos si está completada
     if (taskObject.completed) {
         listHTMLItem.classList.add(completedCSSClass);
     } else {
         listHTMLItem.classList.remove(completedCSSClass);
     }
+
+    
+
     // Añado el manejador de eventos para el checkbox que selecciona(el primero)
     inputCheckboxHTMLItem.addEventListener(
         "click",
@@ -39,7 +47,8 @@ export function task2HTMLElement (taskIndex, taskObject) {
 
     // Añado el manejador de eventos para el checkbox que borra la tarea(el segundo)
     // Este checkbox borra el elemento del array de tareas y del HTML
-    inputCheckboxDeleteHTMLItem.addEventListener(
+    
+      inputCheckboxDeleteHTMLItem.addEventListener(
         "click",
         (event) => {
             //obtengo el array de tareas del LocalStorage
@@ -55,6 +64,14 @@ export function task2HTMLElement (taskIndex, taskObject) {
 
     return listHTMLItem
 }
+function hideHandler(event){
+    event.preventDefault();
+    const completedElements = document.querySelectorAll(".completed");
+    for (let item of completedElements)
+        item.classList.toggle("visibilidad");
+
+}
+
 
 /**
  * Comprueba los elementos del array y los muestra en pantalla. 
