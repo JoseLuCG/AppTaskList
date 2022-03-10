@@ -114,6 +114,7 @@ export function taskAddButtonClickHandler (event) {
     };
     addTask(newTask);
     updateTasksHTML(taskListHTMLSelector,getTasks());
+    input.value="";
 }
 
 /**
