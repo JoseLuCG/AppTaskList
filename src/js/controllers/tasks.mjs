@@ -22,6 +22,7 @@ export function task2HTMLElement (taskIndex, taskObject) {
     inputCheckboxHTMLItem.type = "checkbox";
     inputCheckboxDeleteHTMLItem.type="checkbox";
     buttonEditHTMLItem.type = "button";
+    //buttonEditHTMLItem.addEventListener("click", editTasks) SIN COMPLETAR
     buttonEditHTMLItem.innerText = "Editar";
     inputCheckboxHTMLItem.checked = taskObject.completed;
     pHTMLItem.innerHTML = taskObject.taskName;
@@ -96,7 +97,7 @@ export function updateTasksHTML (CSSselector, tasksArray) {
     } else {
         listHTMLElement.innerText = "Add your first task..."
     }
-    //orderCompletedTask (listHTMLElement)
+    orderCompletedTask (listHTMLElement)
 }
 
 /**
@@ -113,6 +114,7 @@ export function taskAddButtonClickHandler (event) {
     };
     addTask(newTask);
     updateTasksHTML(taskListHTMLSelector,getTasks());
+    input.value="";
 }
 
 /**
@@ -124,11 +126,11 @@ export function taskAddButtonClickHandler (event) {
 
     const ul = document.querySelector("ul");
     const li = document.querySelectorAll(".completed");
-    console.log(ul, li);
+    //console.log(ul, li);
 
     for (let idx = 0; idx < li.length; idx++) {
         const checkbox = li[idx];
-        console.log(checkbox);
+        //console.log(checkbox);
         ul.appendChild(checkbox);
     }
 };
@@ -138,14 +140,9 @@ export function taskAddButtonClickHandler (event) {
  * @param {*} params 
  */
 /*
-function changeTask (params) {
-    
-    editTask.addEventListener(
-        "click"
-        (edit) => {
-            const tasks = getTasks();
-            tasks[taskIndex].completed = edit.target.checked;
-            saveTasks(tasks);
-    )
-
-}*/
+function editTasks (event) {
+    const textoAModificar = document.querySelector("input");
+    const p = event.target.parentNode.querySelector("p")
+    p.innerText = textoAModificar;
+}
+*/
