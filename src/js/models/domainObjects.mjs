@@ -30,7 +30,7 @@ export function addTask(taskObject) {
 export function saveTasks(newTasksArray) {
     const stringData = JSON.stringify(newTasksArray)
     localStorage.setItem(tasksStorageKey, stringData);
-    updateTasksHTML(taskListHTMLSelector, newTasksArray);
+    updateTasksHTML(taskListHTMLSelector, newTasksArray)
 }
 
 /**

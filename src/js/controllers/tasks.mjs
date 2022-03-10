@@ -1,5 +1,5 @@
 import { addTask, saveTasks, getTasks, deleteAllCompletedTasksHandler } from "../models/domainObjects.mjs";
-import { taskListHTMLSelector, addTaskInputSelector, completedCSSClass, buttonDeleteAllCompletedTasks } from "../models/defines.mjs"
+import { disappear, taskListHTMLSelector, addTaskInputSelector, completedCSSClass, buttonDeleteAllCompletedTasks } from "../models/defines.mjs"
 
 /**
  * Transforma los datos a HTML
@@ -13,20 +13,31 @@ export function task2HTMLElement (taskIndex, taskObject) {
     const pHTMLItem = document.createElement("p");
     const inputCheckboxHTMLItem = document.createElement("input");
     const inputCheckboxDeleteHTMLItem = document.createElement("input");
+    const buttonUno=document.querySelector("#buttonUno");
+    buttonUno.addEventListener("click",hideHandler);
+    
+
+    const buttonEditHTMLItem = document.createElement("button");
     // Les proporciono valores 
     inputCheckboxHTMLItem.type = "checkbox";
     inputCheckboxDeleteHTMLItem.type="checkbox";
+    buttonEditHTMLItem.type = "button";
+    buttonEditHTMLItem.innerText = "Editar";
     inputCheckboxHTMLItem.checked = taskObject.completed;
-    pHTMLItem.innerHTML = taskObject.taskName
+    pHTMLItem.innerHTML = taskObject.taskName;
     // Los anido
     listHTMLItem.append(pHTMLItem, inputCheckboxHTMLItem);
     listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem);
+    listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem, buttonEditHTMLItem);
     // Aplico estilos si está completada
     if (taskObject.completed) {
         listHTMLItem.classList.add(completedCSSClass);
     } else {
         listHTMLItem.classList.remove(completedCSSClass);
     }
+
+    
+
     // Añado el manejador de eventos para el checkbox que selecciona(el primero)
     inputCheckboxHTMLItem.addEventListener(
         "click",
@@ -41,7 +52,8 @@ export function task2HTMLElement (taskIndex, taskObject) {
 
     // Añado el manejador de eventos para el checkbox que borra la tarea(el segundo)
     // Este checkbox borra el elemento del array de tareas y del HTML
-    inputCheckboxDeleteHTMLItem.addEventListener(
+    
+      inputCheckboxDeleteHTMLItem.addEventListener(
         "click",
         (event) => {
             //obtengo el array de tareas del LocalStorage
@@ -57,6 +69,14 @@ export function task2HTMLElement (taskIndex, taskObject) {
 
     return listHTMLItem
 }
+function hideHandler(event){
+    event.preventDefault();
+    const completedElements = document.querySelectorAll(".completed");
+    for (let item of completedElements)
+        item.classList.toggle("visibilidad");
+
+}
+
 
 //Añade el manejador de eventos para el checkbox que borra todas las tareas completadas.
 document.querySelector(buttonDeleteAllCompletedTasks).addEventListener("click", deleteAllCompletedTasksHandler);
@@ -112,3 +132,20 @@ export function taskAddButtonClickHandler (event) {
         ul.appendChild(checkbox);
     }
 };
+
+/**
+ * Modifica el texto de la tarea.
+ * @param {*} params 
+ */
+/*
+function changeTask (params) {
+    
+    editTask.addEventListener(
+        "click"
+        (edit) => {
+            const tasks = getTasks();
+            tasks[taskIndex].completed = edit.target.checked;
+            saveTasks(tasks);
+    )
+
+}*/
