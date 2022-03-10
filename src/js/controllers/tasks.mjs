@@ -22,7 +22,7 @@ export function task2HTMLElement (taskIndex, taskObject) {
     inputCheckboxHTMLItem.type = "checkbox";
     inputCheckboxDeleteHTMLItem.type="checkbox";
     buttonEditHTMLItem.type = "button";
-    buttonEditHTMLItem.addEventListener("click", editTasks)
+    //buttonEditHTMLItem.addEventListener("click", editTasks) SIN COMPLETAR
     buttonEditHTMLItem.innerText = "Editar";
     inputCheckboxHTMLItem.checked = taskObject.completed;
     pHTMLItem.innerHTML = taskObject.taskName;
