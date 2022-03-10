@@ -5,7 +5,7 @@
 * Mantener las tareas completadas al final (ordenar automáticamente). [Tania]
 * Mostrar/ocultar tareas completadas. [Moises]
 * Editar tareas no completadas. [Tania]
-* Limpiar input tras añadir tarea.
+* Limpiar input tras añadir tarea. [Moises]
 * No añadir tareas vacías. 
 * Buscador de tareas.
 * Mostrar "deshacer" durante unos segundos tras eliminar una o varias tareas.
