@@ -1,6 +1,6 @@
-import { addTask, saveTasks, getTasks } from "../models/domainObjects.mjs";
-import { disappear, taskListHTMLSelector, addTaskInputSelector, completedCSSClass } from "../models/defines.mjs"
-let bandera=true;  
+import { addTask, saveTasks, getTasks, deleteAllCompletedTasksHandler } from "../models/domainObjects.mjs";
+import { disappear, taskListHTMLSelector, addTaskInputSelector, completedCSSClass, buttonDeleteAllCompletedTasks } from "../models/defines.mjs"
+
 /**
  * Transforma los datos a HTML
  * @param {*} taskIndex 
@@ -17,15 +17,18 @@ export function task2HTMLElement (taskIndex, taskObject) {
     buttonUno.addEventListener("click",hideHandler);
     
 
+    const buttonEditHTMLItem = document.createElement("button");
     // Les proporciono valores 
     inputCheckboxHTMLItem.type = "checkbox";
     inputCheckboxDeleteHTMLItem.type="checkbox";
+    buttonEditHTMLItem.type = "button";
+    buttonEditHTMLItem.innerText = "Editar";
     inputCheckboxHTMLItem.checked = taskObject.completed;
     pHTMLItem.innerHTML = taskObject.taskName;
     // Los anido
     listHTMLItem.append(pHTMLItem, inputCheckboxHTMLItem);
     listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem);
-
+    listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem, buttonEditHTMLItem);
     // Aplico estilos si está completada
     if (taskObject.completed) {
         listHTMLItem.classList.add(completedCSSClass);
@@ -44,6 +47,8 @@ export function task2HTMLElement (taskIndex, taskObject) {
             saveTasks(tasks);
         }
     );
+
+//*TODO Modificar el boton para saber cual es el que borra y el de tarea completada*/
 
     // Añado el manejador de eventos para el checkbox que borra la tarea(el segundo)
     // Este checkbox borra el elemento del array de tareas y del HTML
@@ -73,6 +78,9 @@ function hideHandler(event){
 }
 
 
+//Añade el manejador de eventos para el checkbox que borra todas las tareas completadas.
+document.querySelector(buttonDeleteAllCompletedTasks).addEventListener("click", deleteAllCompletedTasksHandler);
+
 /**
  * Comprueba los elementos del array y los muestra en pantalla. 
  * @param {*} CSSselector - Seria un ul
@@ -80,7 +88,7 @@ function hideHandler(event){
  */
 export function updateTasksHTML (CSSselector, tasksArray) {
     const listHTMLElement = document.querySelector(CSSselector);
-    listHTMLElement.innerText = ""
+    listHTMLElement.innerText = "";
     if (tasksArray.length > 0) {
         for ( let index in tasksArray ) {
             listHTMLElement.appendChild(task2HTMLElement(index, tasksArray[index]));
@@ -88,7 +96,7 @@ export function updateTasksHTML (CSSselector, tasksArray) {
     } else {
         listHTMLElement.innerText = "Add your first task..."
     }
-
+    //orderCompletedTask (listHTMLElement)
 }
 
 /**
@@ -106,3 +114,38 @@ export function taskAddButtonClickHandler (event) {
     addTask(newTask);
     updateTasksHTML(taskListHTMLSelector,getTasks());
 }
+
+/**
+ * Agrupa las tareas completadas a final de la lista.
+ *  @param {object} ul Es el ul de HTML.
+ *  @param {object} li Son todos los li de ul en HTML.
+ */
+ function orderCompletedTask (list) {
+
+    const ul = document.querySelector("ul");
+    const li = document.querySelectorAll(".completed");
+    console.log(ul, li);
+
+    for (let idx = 0; idx < li.length; idx++) {
+        const checkbox = li[idx];
+        console.log(checkbox);
+        ul.appendChild(checkbox);
+    }
+};
+
+/**
+ * Modifica el texto de la tarea.
+ * @param {*} params 
+ */
+/*
+function changeTask (params) {
+    
+    editTask.addEventListener(
+        "click"
+        (edit) => {
+            const tasks = getTasks();
+            tasks[taskIndex].completed = edit.target.checked;
+            saveTasks(tasks);
+    )
+
+}*/

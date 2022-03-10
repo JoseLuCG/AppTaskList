@@ -32,3 +32,19 @@ export function saveTasks(newTasksArray) {
     localStorage.setItem(tasksStorageKey, stringData);
     updateTasksHTML(taskListHTMLSelector, newTasksArray)
 }
+
+/**
+ * Elimina todas las tareas completadas.
+ */
+export function deleteAllCompletedTasksHandler(event) {
+    event.preventDefault()
+    const taskArray = getTasks();
+    const tempArray = [...taskArray];
+    for (let index in tempArray) {
+        const item = tempArray[index];
+        if (item.completed){
+            taskArray.splice(index,1);
+        }
+    }
+    console.log(taskArray)
+}
