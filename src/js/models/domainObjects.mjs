@@ -38,13 +38,15 @@ export function saveTasks(newTasksArray) {
  */
 export function deleteAllCompletedTasksHandler(event) {
     event.preventDefault()
-    const taskArray = getTasks();
+    let taskArray = getTasks();
     const tempArray = [...taskArray];
+    let taskIncompleted = [];
     for (let index in tempArray) {
         const item = tempArray[index];
-        if (item.completed){
-            taskArray.splice(index,1);
+        if (item.completed === false){
+            taskIncompleted.push(item);
         }
     }
-    console.log(taskArray)
+    taskArray=taskIncompleted;
+    saveTasks(taskArray);
 }
