@@ -48,6 +48,5 @@ export function deleteAllCompletedTasksHandler(event) {
         }
     }
     taskArray=taskIncompleted;
-    console.log(taskArray);
     saveTasks(taskArray);
 }
