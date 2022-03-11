@@ -111,16 +111,19 @@ export function updateTasksHTML (CSSselector, tasksArray) {
  * @param {*} event 
  */
 export function taskAddButtonClickHandler (event) {
-    //console.log(event)
     const input = document.querySelector(addTaskInputSelector);
-    event.preventDefault()
+    event.preventDefault();
     const newTask = {
         taskName: input.value,
         completed: false,
     };
-    addTask(newTask);
-    updateTasksHTML(taskListHTMLSelector,getTasks());
-    input.value="";
+    if (input.value!=""){
+        addTask(newTask);
+        updateTasksHTML(taskListHTMLSelector,getTasks());
+        input.value="";
+    }else {
+        window.alert("Añade una descripción a la tarea antes de continuar");
+    }
 }
 
 /**
