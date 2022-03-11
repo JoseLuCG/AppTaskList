@@ -22,19 +22,19 @@ export function task2HTMLElement (taskIndex, taskObject) {
     inputCheckboxHTMLItem.type = "checkbox";
     inputCheckboxDeleteHTMLItem.type="checkbox";
     buttonEditHTMLItem.type = "button";
-    //buttonEditHTMLItem.addEventListener("click", editTasks) SIN COMPLETAR
+    buttonEditHTMLItem.addEventListener("click", editTasks) //SIN COMPLETAR
     buttonEditHTMLItem.innerText = "Editar";
     inputCheckboxHTMLItem.checked = taskObject.completed;
     pHTMLItem.innerHTML = taskObject.taskName;
     // Los anido
-    listHTMLItem.append(pHTMLItem, inputCheckboxHTMLItem);
-    listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem);
-    listHTMLItem.append(pHTMLItem, inputCheckboxDeleteHTMLItem, buttonEditHTMLItem);
+    listHTMLItem.append(inputCheckboxHTMLItem, pHTMLItem, inputCheckboxDeleteHTMLItem);
     // Aplico estilos si está completada
     if (taskObject.completed) {
         listHTMLItem.classList.add(completedCSSClass);
+    
     } else {
         listHTMLItem.classList.remove(completedCSSClass);
+        listHTMLItem.append(buttonEditHTMLItem);
     }
 
     
@@ -131,7 +131,7 @@ export function taskAddButtonClickHandler (event) {
  *  @param {object} ul Es el ul de HTML.
  *  @param {object} li Son todos los li de ul en HTML.
  */
- function orderCompletedTask (list) {
+ function orderCompletedTask (event) {
 
     const ul = document.querySelector("ul");
     const li = document.querySelectorAll(".completed");
@@ -150,8 +150,14 @@ export function taskAddButtonClickHandler (event) {
  */
 /*
 function editTasks (event) {
-    const textoAModificar = document.querySelector("input");
+    const cajaParaEditar = document.querySelector("#taskInput");
     const p = event.target.parentNode.querySelector("p")
-    p.innerText = textoAModificar;
+    let tareaeditable = p.innerText;
+
+    console.log(tareaeditable);
+    console.log(cajaParaEditar);
+
+    cajaParaEditar.value = tareaeditable;
+
 }
 */
