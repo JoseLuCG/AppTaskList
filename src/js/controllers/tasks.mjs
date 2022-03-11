@@ -1,5 +1,5 @@
 import { addTask, saveTasks, getTasks, deleteAllCompletedTasksHandler } from "../models/domainObjects.mjs";
-import { disappear, taskListHTMLSelector, addTaskInputSelector, completedCSSClass, buttonDeleteAllCompletedTasks } from "../models/defines.mjs"
+import { disappear, SearchTaskTextSelector, taskListHTMLSelector, addTaskInputSelector, completedCSSClass, buttonDeleteAllCompletedTasks, SearchTaskButtonSelector } from "../models/defines.mjs"
 
 /**
  * Transforma los datos a HTML
@@ -143,6 +143,22 @@ export function taskAddButtonClickHandler (event) {
         ul.appendChild(checkbox);
     }
 };
+
+/**
+ * Manejador del evento del click del boton de buscar tareas
+ * @param {undefined} event 
+ */
+export function SearchTaskButtonClickHandler(event){
+    const tasks = getTasks();
+    let expresionABuscar = document.querySelector(SearchTaskTextSelector).value
+    console.log("la expresion a buscar es: " + expresionABuscar)
+    const resultado=tasks.forEach(element => {
+    element.taskName.match(expresionABuscar);
+    
+    });
+    console.log(resultado);
+    
+}
 
 /**
  * Modifica el texto de la tarea.
