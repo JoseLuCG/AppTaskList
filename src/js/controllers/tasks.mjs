@@ -70,6 +70,12 @@ export function task2HTMLElement (taskIndex, taskObject) {
 
     return listHTMLItem
 }
+
+/**
+ * Manejador del evento del click del boton ver/ocultar 
+ * tareas completadas 
+ * @param {undefined} event - Objeto con las propiedades del evento 
+ */
 function hideHandler(event){
     event.preventDefault();
     const completedElements = document.querySelectorAll(".completed");
