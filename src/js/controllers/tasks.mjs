@@ -16,8 +16,7 @@ export function task2HTMLElement (taskIndex, taskObject) {
     const buttonUno=document.querySelector("#buttonUno");
     buttonUno.addEventListener("click",hideHandler);
     const buttonBuscar=document.querySelector(SearchTaskButtonSelector);
-
-    buttonBuscar.addEventListener("click", SearchTaskButtonClickHandler)
+    buttonBuscar.addEventListener("click", SearchTaskButtonClickHandler);
 
     const buttonEditHTMLItem = document.createElement("button");
     // Les proporciono valores 
@@ -158,9 +157,12 @@ export function SearchTaskButtonClickHandler(event){
 
     for(let index=0;index<tasks.length;index++){
         if(tasks[index].taskName.match(expresionABuscar)!=null)
-            resultado=tasks[index].taskName+"\n"+resultado;
+            resultado=tasks[index].taskName+"<br>"+resultado;
     }
     console.log("lista de tareas encontradas: \n" + resultado);
+
+    let listaEncontrados=document.querySelector("#listaEncontrados");
+    listaEncontrados.innerHTML=resultado;  
 }
 
 /**
